@@ -6,7 +6,7 @@ script:
 
 after_success:
   - echo "$DEPLOYKEY" > deploy.pem
-  - GIT_SSH=.git_ssh.sh git clone git@github.com:ibab/demo-paper-output tmp
+  - GIT_SSH=~/.git_ssh.sh git clone git@github.com:ibab/demo-paper-output tmp
   - cp main.pdf tmp/main.pdf
   - cd tmp; git add main.pdf
   - git config --global user.name "Travis"
