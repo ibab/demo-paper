@@ -1,5 +1,16 @@
 install:
-- sudo apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
+  - sudo apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
  
 script:
-- make
+  - make
+
+after_success:
+  - echo $DEPLOYKEY > .travis/deploy.pem
+  - chmod 600 .travis/deploy.pem
+  - ssh-add .travis/deploy.pem
+  - git clone git@github.com:ibab/demo-paper-output tmp
+  - cp main.pdf tmp/main.pdf
+  - cd tmp; git add main.pdf
+  - cd tmp; git commit -m "Add PDF from travis"
+  - cd tmp; git push
+
