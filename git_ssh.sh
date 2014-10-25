@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ssh -i deploy.pem $1 $2
+ssh -vvv -i deploy.pem $1 $2
