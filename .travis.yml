@@ -1,13 +1,13 @@
 install:
-  - sudo apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
+  - sudo apt-get install texlive-latex-recommended texlive-fonts-recommended
  
 script:
   - make
 
 after_success:
-  - echo $DEPLOYKEY > deploy.pem
+  - echo "$DEPLOYKEY" > deploy.pem
   - chmod 600 deploy.pem
-  - ssh-agent
+  - export $(ssh-agent)
   - ssh-add deploy.pem
   - git clone git@github.com:ibab/demo-paper-output tmp
   - cp main.pdf tmp/main.pdf
