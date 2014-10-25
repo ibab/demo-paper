@@ -7,7 +7,7 @@ script:
 after_success:
   - echo "$DEPLOYKEY" > deploy.pem
   - chmod 600 deploy.pem
-  - export $(ssh-agent)
+  - $(ssh-agent)
   - ssh-add deploy.pem
   - git clone git@github.com:ibab/demo-paper-output tmp
   - cp main.pdf tmp/main.pdf
